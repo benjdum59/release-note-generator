@@ -10,40 +10,68 @@ echo "" >> ${output}
 echo "## ${last_tag}" >> ${output}
 echo "" >> ${output}
 
-logs=`git log --pretty="%h - %s (%an)" ${previous_tag}..${last_tag}`
+logs=$(git log --pretty="%h - %s (%an)" ${previous_tag}..${last_tag})
 
-echo "### Bug Fixes" >> ${output}
-echo "${logs}" | grep -i " - fix:" >> ${output}
-echo "">>${output}
+fixCommits=$(echo "${logs}"|grep -i " - fix:")
+featCommits=$(echo "${logs}"|grep -i " - feat:")
+choreCommits=$(echo "${logs}"|grep -i " - chore:")
+docsCommits=$(echo "${logs}"|grep -i " - docs:")
+styleCommits=$(echo "${logs}"|grep -i " - style:")
+refactorCommits=$(echo "${logs}"|grep -i " - refactor:")
+perfCommits=$(echo "${logs}"|grep -i " - perf:")
+testCommits=$(echo "${logs}"|grep -i " - test:")
+ciCommits=$(echo "${logs}"|grep -i " - ci:")
 
-echo "### Features" >> ${output}
-echo "${logs}" | grep -i " - feat:" >> ${output} 
-echo "">>${output}
+if [ "${fixCommits}" != "" ]; then
+	echo "### Bug Fixes" >> ${output}
+	echo "${fixCommits}" >> ${output}
+	echo "">>${output}
+fi
 
-echo "### Chore" >> ${output}
-echo "${logs}" | grep -i " - chore:" >> ${output}
-echo "">> ${output}
+if [ "${featCommits}" != "" ]; then
+        echo "### Features" >> ${output}
+        echo "${featCommits}" >> ${output}
+        echo "">>${output}
+fi
 
-echo "### Docs" >> ${output}
-echo "${logs}" | grep -i " - docs:" >> ${output}
-echo "">> ${output}
+if [ "${choreCommits}" != "" ]; then
+        echo "### Configuration" >> ${output}
+        echo "${choreCommits}" >> ${output}
+        echo "">>${output}
+fi
 
-echo "### Style" >> ${output}
-echo "${logs}" | grep -i " - style:" >> ${output}
-echo "">> ${output}
+if [ "${docsCommits}" != "" ]; then
+        echo "### Documentation" >> ${output}
+        echo "${docsCommits}" >> ${output}
+        echo "">>${output}
+fi
 
-echo "### Refactor" >> ${output}
-echo "${logs}" | grep -i " - refactor:" >> ${output}
-echo "">> ${output}
+if [ "${styleCommits}" != "" ]; then
+        echo "### Style" >> ${output}
+        echo "${styleCommits}" >> ${output}
+        echo "">>${output}
+fi
 
-echo "### Performance" >> ${output}
-echo "${logs}" | grep -i " - perf:" >> ${output}
-echo "">> ${output}
+if [ "${refactorCommits}" != "" ]; then
+        echo "### Refactor" >> ${output}
+        echo "${refactorCommits}" >> ${output}
+        echo "">>${output}
+fi
 
-echo "### Test" >> ${output}
-echo "${logs}" | grep -i " - test:" >> ${output}
-echo "">> ${output}
+if [ "${perfCommits}" != "" ]; then
+        echo "### Performance" >> ${output}
+        echo "${perfCommits}" >> ${output}
+        echo "">>${output}
+fi
 
-echo "### Continuous Integration" >> ${output}
-echo "${logs}" | grep -i " - ci:" >> ${output}
-echo "">> ${output}
+if [ "${testCommits}" != "" ]; then
+        echo "### Tests" >> ${output}
+        echo "${testCommits}" >> ${output}
+        echo "">>${output}
+fi
+
+if [ "${ciCommits}" != "" ]; then
+        echo "### Continuous Integration" >> ${output}
+        echo "${ciCommits}" >> ${output}
+        echo "">>${output}
+fi
