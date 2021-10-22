@@ -27,25 +27,27 @@ esac
 done
 shift $((OPTIND -1))
 
-if [ "${fromTag}" -eq "" ]; then
-
+git fetch --all --tags 1>/dev/null 2>&1
+#git show-ref HEAD -s
+if [ -z "${fromTag}" ]; then
+	fromTag=$(git describe --tags `git rev-list --tags --max-count=1`)
 fi
 
-if [ "${toTag}" -eq "" ]; then
+if [ -z "${toTag}" ]; then
 	toTag="HEAD"
 fi
 
-last_tag='HEAD'
-previous_tag='41.0.0.181'
+echo "Generating Release note between ${fromTag} to ${toTag}..."
+
 output='ReleaseNote.MD'
 
 echo "# Release Note" > ${output}
 echo "" >> ${output}
 
-echo "## ${last_tag}" >> ${output}
+echo "## From ${fromTag} to ${toTag}" >> ${output}
 echo "" >> ${output}
 
-logs=$(git log --pretty="%h - %s (%an)" ${previous_tag}..${last_tag})
+logs=$(git log --pretty="%h - %s (%an)" ${fromTag}..${toTag})
 
 fixCommits=$(echo "${logs}"|grep -i " - fix:")
 featCommits=$(echo "${logs}"|grep -i " - feat:")
@@ -110,3 +112,10 @@ if [ "${ciCommits}" != "" ]; then
         echo "${ciCommits}" >> ${output}
         echo "">>${output}
 fi
+
+echo '.~~~~.'
+echo 'i====i_'
+echo '|cccc|_)'
+echo '|cccc|'
+echo '`-==-'
+
