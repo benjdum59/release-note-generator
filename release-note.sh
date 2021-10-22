@@ -1,5 +1,40 @@
 #!/bin/bash
 
+print_usage()
+{
+	echo "Usage:"
+        echo "Get the release note from last tag to HEAD:"
+        echo "$(basename "$0")"
+        echo ""
+        echo "Get the release note between 2 tags:"
+        echo "$(basename "$0") -f <from tag> -t <to tag>"
+}
+
+while getopts 'hf:t:' option; do
+	case "$option" in
+		h) print_usage 
+		exit 0
+		;;
+		f) fromTag=$OPTARG
+		;;
+		t) toTag=$OPTARG
+		;;
+		\?) echo "Illegal option"
+		print_usage
+		exit 1
+		;;
+esac
+done
+shift $((OPTIND -1))
+
+if [ "${fromTag}" -eq "" ]; then
+
+fi
+
+if [ "${toTag}" -eq "" ]; then
+	toTag="HEAD"
+fi
+
 last_tag='HEAD'
 previous_tag='41.0.0.181'
 output='ReleaseNote.MD'
