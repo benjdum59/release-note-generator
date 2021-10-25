@@ -30,7 +30,7 @@ shift $((OPTIND -1))
 git fetch --all --tags 1>/dev/null 2>&1
 #git show-ref HEAD -s
 if [ -z "${fromTag}" ]; then
-	fromTag=$(git describe --tags `git rev-list --tags --max-count=1`)
+	fromTag=$(git describe --tags $(git rev-list --tags --max-count=1))
 fi
 
 if [ -z "${toTag}" ]; then
@@ -47,7 +47,7 @@ echo "" >> ${output}
 echo "## From ${fromTag} to ${toTag}" >> ${output}
 echo "" >> ${output}
 
-logs=$(git log --pretty="%h - %s (%an)" ${fromTag}..${toTag})
+logs="$(git log --pretty=\\"%h - %s (%an)\\" ${fromTag}..${toTag})"
 
 fixCommits=$(echo "${logs}"|grep -i " - fix:")
 featCommits=$(echo "${logs}"|grep -i " - feat:")

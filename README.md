@@ -1,16 +1,10 @@
 # release-note-generator
 
-
-
 Based on Git history (using Angular commit message syntax), this pure shell tool is used to generate a release note in a MarkDown format.
-
-
 
 ## Installation
 
 Put the release-note.sh inside your git repository and give it some executable rights (e.g. sudo chmod +x release-note.sh).
-
-
 
 ## Usage
 
@@ -20,15 +14,11 @@ Put the release-note.sh inside your git repository and give it some executable r
 ./release-note.sh -h
 ```
 
-
-
 ### Release note between last tag and HEAD
 
 ```bash
     ./release-note.sh
 ```
-
-
 
 ### Release note between two tags
 
@@ -36,11 +26,9 @@ Put the release-note.sh inside your git repository and give it some executable r
     ./release-note.sh -f <from tag> -t <to tag> #e.g. ./release-note.sh -f 1.0.0 -t 2.0.0
 ```
 
-
-
 ## Result example
 
-```
+```plaintext
 # Release Note
 
 ## From 1.0.0 to 2.0.0
@@ -57,31 +45,25 @@ db9b8a82e - fix: this is a commit for fixing a bug 2 (Benjamin Dumont)
 
 ### Continuous Integration
 3bf9378a2 - ci: build configuration (Benjamin Dumont)
-
-
 ```
-
-
 
 ## List of keywords used to generate the Release Note
 
-- fix:
-- feat:
-- chore:
-- docs:
-- style:
-- refactor:
-- perf:
-- test:
-- ci:
-
-
+-   fix:
+-   feat:
+-   chore:
+-   docs:
+-   style:
+-   refactor:
+-   perf:
+-   test:
+-   ci:
 
 ## Limitations
 
 Using scope like the following code will not work.
 
-```
+```plaintext
 feat(lang): add polish language
 ```
 
