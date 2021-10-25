@@ -1,3 +1,5 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/fc8c9c0129e94ba8a4d674a2a1a782f4)](https://www.codacy.com/gh/benjdum59/release-note-generator/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=benjdum59/release-note-generator&amp;utm_campaign=Badge_Grade)
+
 # release-note-generator
 
 Based on Git history (using Angular commit message syntax), this pure shell tool is used to generate a release note in a MarkDown format.
