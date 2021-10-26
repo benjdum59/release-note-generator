@@ -40,7 +40,7 @@ db9b8a82e - fix: this is a commit for fixing a bug 2 (Benjamin Dumont)
 369eefa9e - fix: this is a commit for fixing a bug 1 (Benjamin Dumont)
 
 ### Features
-8a8dbca86 - this is a commit for a feature (Benjamin Dumont)
+8a8dbca86 - feat: this is a commit for a feature (Benjamin Dumont)
 
 ### Configuration
 1428e0136 - chore: generate changelog (Benjamin Dumont)
