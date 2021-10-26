@@ -47,17 +47,17 @@ echo "" >> ${output}
 echo "## From ${fromTag} to ${toTag}" >> ${output}
 echo "" >> ${output}
 
-logs="$(git log --pretty=\\"%h - %s (%an)\\" ${fromTag}..${toTag})"
+logs="$(git log --pretty='%h - %s (%an)' ${fromTag}..${toTag})"
 
-fixCommits=$(echo "${logs}"|grep -i " - fix:")
-featCommits=$(echo "${logs}"|grep -i " - feat:")
-choreCommits=$(echo "${logs}"|grep -i " - chore:")
-docsCommits=$(echo "${logs}"|grep -i " - docs:")
-styleCommits=$(echo "${logs}"|grep -i " - style:")
-refactorCommits=$(echo "${logs}"|grep -i " - refactor:")
-perfCommits=$(echo "${logs}"|grep -i " - perf:")
-testCommits=$(echo "${logs}"|grep -i " - test:")
-ciCommits=$(echo "${logs}"|grep -i " - ci:")
+fixCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]{9} - fix(\\(.*\\))?:")
+featCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]{9} - feat(\\(.*\\))?:")
+choreCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]{9} - chore(\\(.*\\))?:")
+docsCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]{9} - docs(\\(.*\\))?:")
+styleCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]{9} - style(\\(.*\\))?:")
+refactorCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]{9} - refactor(\\(.*\\))?:")
+perfCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]{9} - perf(\\(.*\\))?:")
+testCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]{9} - test(\\(.*\\))?:")
+ciCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]{9} - ci(\\(.*\\))?:")
 
 if [ "${fixCommits}" != "" ]; then
 	echo "### Bug Fixes" >> ${output}

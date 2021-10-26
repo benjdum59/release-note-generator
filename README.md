@@ -63,10 +63,4 @@ db9b8a82e - fix: this is a commit for fixing a bug 2 (Benjamin Dumont)
 
 ## Limitations
 
-Using scope like the following code will not work.
-
-```plaintext
-feat(lang): add polish language
-```
-
-If you need this feature, let me know :)
+Only works with the angular commit message pattern. Should work with scopes too.
