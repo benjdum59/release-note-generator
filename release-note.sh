@@ -49,15 +49,15 @@ echo "" >> ${output}
 
 logs="$(git log --pretty='%h - %s (%an)' ${fromTag}..${toTag})"
 
-fixCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]{9} - fix(\\(.*\\))?:")
-featCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]{9} - feat(\\(.*\\))?:")
-choreCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]{9} - chore(\\(.*\\))?:")
-docsCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]{9} - docs(\\(.*\\))?:")
-styleCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]{9} - style(\\(.*\\))?:")
-refactorCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]{9} - refactor(\\(.*\\))?:")
-perfCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]{9} - perf(\\(.*\\))?:")
-testCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]{9} - test(\\(.*\\))?:")
-ciCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]{9} - ci(\\(.*\\))?:")
+fixCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]+ - fix(\\(.*\\))?:")
+featCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]+ - feat(\\(.*\\))?:")
+choreCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]+ - chore(\\(.*\\))?:")
+docsCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]+ - docs(\\(.*\\))?:")
+styleCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]+ - style(\\(.*\\))?:")
+refactorCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]+ - refactor(\\(.*\\))?:")
+perfCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]+ - perf(\\(.*\\))?:")
+testCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]+ - test(\\(.*\\))?:")
+ciCommits=$(echo "${logs}"|grep -Ei "^[a-z0-9]+ - ci(\\(.*\\))?:")
 
 if [ "${fixCommits}" != "" ]; then
 	echo "### Bug Fixes" >> ${output}
